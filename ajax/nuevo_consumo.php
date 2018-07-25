@@ -27,20 +27,27 @@
 			
 			//SI NO ES COD MAESTRO VALIDA CONSUMO Y REGISTRO DEL DIA
 			if ($valida_consumo == 1){
-				$sql_existe=mysqli_query($con,"SELECT CLI.id_cliente, 
-										(SELECT COUNT(CON.id_consumos) FROM consumos_diarios CON WHERE CON.id_cliente = CLI.id_cliente) as comio
-										FROM CLIENTES CLI WHERE CLI.documento_cliente = '$documento' and date_format(CLI.fec_consumo,'%Y-%m-%d') = '$fecha_valida'");
+				$sql_existe=mysqli_query($con,"SELECT clientes.*, 
+												(SELECT COUNT(CON.id_consumos) FROM consumos_diarios CON WHERE CON.id_cliente = clientes.id_cliente) as comio
+											FROM clientes
+											WHERE DATE_FORMAT(NOW( ), '%H:%i:%S' ) >= (select turnos.inicio_turno from turnos where turnos.codigo_turno = clientes.menu_cliente)
+											AND DATE_FORMAT(NOW( ), '%H:%i:%S' ) <= (select turnos.fin_turno from turnos where turnos.codigo_turno = clientes.menu_cliente)
+											AND CURDATE() = date_format(clientes.fec_consumo,'%Y-%m-%d')
+											AND clientes.documento_cliente = '$documento'");
 				$row_valida= mysqli_fetch_array($sql_existe);
 				$id_cliente = $row_valida['id_cliente'];
 				$registra_consumo = $row_valida['comio'];
+				$turno_cliente = $row_valida['menu_cliente'];
+				
 			}
                
 			if ($id_cliente <= 0){
-				$errors []= "No existe un registro de hoy para el Id: $documento";     
+				$errors []= "No existe un registro de hoy en este horario para el Id: $documento";     
 			} elseif ($registra_consumo > 0 ) {
 				$alerts []= "Ya existe un registro de hoy para el Id: $documento";
 			} else {
-				$puedecomer = 1;
+			
+					$puedecomer = 1;
 			}
    
     

@@ -20,6 +20,7 @@
     $lineas = file($archivotmp);
     //inicializamos variable a 0, esto nos ayudará a indicarle que no lea la primera línea
     $i=0;
+    $num_registros = 0;
     //Recorremos el bucle para leer línea por línea
     foreach ($lineas as $linea_num => $linea){ 
         if($i != 0){ 
@@ -29,24 +30,25 @@
             $datos = explode(";",$linea);
             //INICIA CARGA
             $nombre_cliente = utf8_encode($datos[0]);
-            $documento_cliente = utf8_encode($datos[1]);
-            $telefono_cliente = utf8_encode($datos[2]);
-            $email_cliente = utf8_encode($datos[3]);
-            $fec_consumo = date('Y/m/d',strtotime(str_replace("/", "-", $datos[4])));
-            $menu_cliente = utf8_encode($datos[5]);
-            $date_added=date("Y-m-d H:i:s");
-            
-            
-            $sql_update = "INSERT INTO `clientes`(`nombre_cliente`, `documento_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `codigo`, `saldo_cliente`, `empresa_cliente`, `fec_consumo`, `menu_cliente`,`id_carga`) 
-            VALUES ('$nombre_cliente','$documento_cliente','$telefono_cliente','$email_cliente','','','$date_added','','0','','$fec_consumo','$menu_cliente','$codigo_log')";
-
-            $query_new_insert = mysqli_query($con,$sql_update);
-            if ($query_new_insert){
-                $messages = "Carga ingresada satisfactoriamente.";
+            if (trim($nombre_cliente) != ''){
+                $num_registros = $num_registros + 1;
+                $documento_cliente = utf8_encode($datos[1]);
+                $fec_consumo = date('Y/m/d',strtotime(str_replace("/", "-", $datos[2])));
+                $turno = utf8_encode($datos[3]);
+                $date_added=date("Y-m-d H:i:s");
                 
-			} else{
-				$errors = "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);
-			}
+                
+                $sql_update = "INSERT INTO `clientes`(`nombre_cliente`, `documento_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `codigo`, `saldo_cliente`, `empresa_cliente`, `fec_consumo`, `menu_cliente`,`id_carga`) 
+                VALUES ('$nombre_cliente','$documento_cliente','','','','','$date_added','','0','','$fec_consumo','$turno','$codigo_log')";
+
+                $query_new_insert = mysqli_query($con,$sql_update);
+                if ($query_new_insert){
+                    $messages = "Carga ingresada satisfactoriamente.";
+                    
+                } else{
+                    $errors = "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);
+                }
+            }    
             
         //FIN CARGA
         } //cerramos condición
@@ -95,7 +97,7 @@
                                 $codigo_log = $_POST['codigo'];
                                 $registros_log = $i - 1;
                                 $sql_log = "INSERT INTO cargas(codigo,usuario,fecha,registros) 
-                                VALUES('$codigo_log','$usuario_log','$fecha_log',$registros_log)";
+                                VALUES('$codigo_log','$usuario_log','$fecha_log',$num_registros)";
                                 $query_new_insert = mysqli_query($con,$sql_log);
                                 echo $messages;
 

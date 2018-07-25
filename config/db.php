@@ -8,7 +8,7 @@ define('DB_USER', 'root');//Usuario de tu base de datos
 
 define('DB_PASS', '');//Contraseña del usuario de la base de datos
 
-define('DB_NAME', 'proco389_sgbkruger');//Nombre de la base de datos
+define('DB_NAME', 'proco389_sgbiess');//Nombre de la base de datos
 
 
 ?>

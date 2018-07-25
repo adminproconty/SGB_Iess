@@ -144,7 +144,7 @@
 
 		$sql="SELECT cli.*, 
 		(select MAX(co.estado) from consumos_diarios co where co.id_cliente = cli.id_cliente and co.estado = 1 ) as estado,
-		(select MAX(co.fecha_consumo) from consumos_diarios co where co.id_cliente = cli.id_cliente and co. estado = 1) as fecha_consumo
+		(select concat(t.inicio_turno,'-',t.fin_turno)  from turnos t where t.codigo_turno = cli.menu_cliente) as turno
 	   FROM  $sTable $sWhere LIMIT $offset,$per_page";
 
 
@@ -170,12 +170,10 @@
 
 					<th>Cedula</th>
 
-					<th>Menú</th>
+					<th>Turno</th>
 
 					<th>Fec. a Consumir</th>
 					
-					<th>Fec.Consumo</th>
-
 					<th>Estado</th>
 
 					<th>IdCarga</th>
@@ -198,9 +196,9 @@
 						if ($estado==0){$estado="Sin Consumir";$label_class='label-success';}
 						else {$estado="Consumido";$label_class='label-danger';}
 						$menu_cliente=$row['menu_cliente'];
-						$fecha_consumo=$row['fecha_consumo'];
 						$a_consumir=$row['fec_consumo'];
 						$id_carga=$row['id_carga'];
+						$turno=$row['turno'];
 						
 					?>
 
@@ -210,8 +208,7 @@
 					<input type="hidden" value="<?php echo $nombre_cliente;?>" id="nombre_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $documento_cliente;?>" id="documento_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $estado;?>" id="estado<?php echo $id_cliente;?>">
-					<input type="hidden" value="<?php echo $menu_cliente;?>" id="menu_cliente<?php echo $id_cliente;?>">
-					<input type="hidden" value="<?php echo $fecha_consumo;?>" id="fecha_consumo<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $turno;?>" id="menu_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $a_consumir;?>" id="a_consumir<?php echo $id_cliente;?>">
 
 					
@@ -223,9 +220,8 @@
 						<td><?php echo $id_cliente; ?></td>
 						<td><?php echo $nombre_cliente; ?></td>
 						<td><?php echo $documento_cliente;?></td>
-						<td><?php echo $menu_cliente;?></td>
+						<td><?php echo $turno;?></td>
 						<td><?php echo $a_consumir;?></td>
-						<td><?php echo $fecha_consumo;?></td>
 						<td><span class="label <?php echo $label_class;?>"><?php echo $estado; ?></span></td>
 						<td><?php echo $id_carga;?></td>
 						
