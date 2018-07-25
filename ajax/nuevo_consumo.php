@@ -42,9 +42,11 @@
 			}
                
 			if ($id_cliente <= 0){
-				$errors []= "No existe un registro de hoy en este horario para el Id: $documento";     
+				$errors []= "No existe un registro de hoy en este horario para el Id: $documento";   
+				$puedecomer = 0;  
 			} elseif ($registra_consumo > 0 ) {
 				$alerts []= "Ya existe un registro de hoy para el Id: $documento";
+				$puedecomer = 0;
 			} else {
 			
 					$puedecomer = 1;
