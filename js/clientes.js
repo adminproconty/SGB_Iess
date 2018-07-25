@@ -92,6 +92,7 @@ $( "#editar_cliente" ).submit(function( event ) {
 		var menu_cliente = $("#menu_cliente"+id).val();
 		var a_consumir = $("#a_consumir"+id).val();
 
+
 		$("#mod_nombre").val(nombre_cliente);
 		$("#mod_id").val(id);
 		$("#mod_documento").val(documento_cliente);

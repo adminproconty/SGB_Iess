@@ -30,15 +30,14 @@
 			  
 
 				<div class="form-group">
-				<label for="mod_menu" class="col-sm-3 control-label">Opción</label>
+				<label for="mod_menu" class="col-sm-3 control-label">Horario</label>
 					<div class="col-sm-8">
 					<select class="form-control" id="mod_menu" name="mod_menu" required>
-						<option value="">-- Selecciona opción --</option>
-						<option value="Opcion1" selected>Opción1</option>
-						<option value="Opcion2" selected>Opción2</option>
-						<option value="Dieta" selected>Dieta</option>
-						<option value="Vegetariano" selected>Vegetariano</option>
-
+						<option value="" selected>-- Selecciona opción --</option>
+						<option value='1'>1</option>
+						<option value='2'>2</option>
+						<option value='3'>3</option>
+						
 						</select>
 					</div>
 					</div>	

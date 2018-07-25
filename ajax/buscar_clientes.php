@@ -195,7 +195,7 @@
 						$estado_ori=$row['estado'];
 						if ($estado==0){$estado="Sin Consumir";$label_class='label-success';}
 						else {$estado="Consumido";$label_class='label-danger';}
-						$menu_cliente=$row['menu_cliente'];
+						$menu_cliente=trim($row['menu_cliente']);
 						$a_consumir=$row['fec_consumo'];
 						$id_carga=$row['id_carga'];
 						$turno=$row['turno'];
@@ -208,7 +208,7 @@
 					<input type="hidden" value="<?php echo $nombre_cliente;?>" id="nombre_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $documento_cliente;?>" id="documento_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $estado;?>" id="estado<?php echo $id_cliente;?>">
-					<input type="hidden" value="<?php echo $turno;?>" id="menu_cliente<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $menu_cliente;?>" id="menu_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $a_consumir;?>" id="a_consumir<?php echo $id_cliente;?>">
 
 					
