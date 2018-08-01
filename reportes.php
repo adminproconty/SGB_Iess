@@ -49,6 +49,7 @@
                         <select class="form-control" id="select_reporte">
 					        <option value="">-- Selecciona tipo de reporte --</option>
 							<option value="cliente">Consumos</option>
+							<option value="cliente">Intentos de Consumos</option>
 					        
 				        </select>
 					</div>

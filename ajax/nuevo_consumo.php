@@ -30,8 +30,8 @@
 				$sql_existe=mysqli_query($con,"SELECT clientes.*, 
 												(SELECT COUNT(CON.id_consumos) FROM consumos_diarios CON WHERE CON.id_cliente = clientes.id_cliente) as comio
 											FROM clientes
-											WHERE DATE_FORMAT(NOW( ), '%H:%i:%S' ) >= (select turnos.inicio_turno from turnos where turnos.codigo_turno = clientes.menu_cliente)
-											AND DATE_FORMAT(NOW( ), '%H:%i:%S' ) <= (select turnos.fin_turno from turnos where turnos.codigo_turno = clientes.menu_cliente)
+											WHERE DATE_FORMAT(NOW( ), '%H:%i:%S' ) >= clientes.turno_desde
+											AND DATE_FORMAT(NOW( ), '%H:%i:%S' ) <= clientes.turno_hasta
 											AND CURDATE() = date_format(clientes.fec_consumo,'%Y-%m-%d')
 											AND clientes.documento_cliente = '$documento'");
 				$row_valida= mysqli_fetch_array($sql_existe);
