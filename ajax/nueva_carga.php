@@ -29,17 +29,22 @@
             leyendo hasta que encuentre un ; */
             $datos = explode(";",$linea);
             //INICIA CARGA
-            $nombre_cliente = utf8_encode($datos[0]);
-            if (trim($nombre_cliente) != ''){
+            $documento_cliente = utf8_encode($datos[0]);
+            
+            if (trim($documento_cliente) != ''){
                 $num_registros = $num_registros + 1;
-                $documento_cliente = utf8_encode($datos[1]);
-                $fec_consumo = date('Y/m/d',strtotime(str_replace("/", "-", $datos[2])));
-                $turno = utf8_encode($datos[3]);
+                $nombre_cliente = utf8_encode($datos[1]);
+                $menu_cliente = utf8_encode($datos[2]);
+                $fec_consumo = date('Y/m/d',strtotime(str_replace("/", "-", $datos[3])));
+                $turno_desde = utf8_encode($datos[4]);
+                $turno_hasta = utf8_encode($datos[5]);
+                $empresa_cliente = utf8_encode($datos[6]);
+                $direccion_cliente = utf8_encode($datos[7]);
                 $date_added=date("Y-m-d H:i:s");
                 
                 
-                $sql_update = "INSERT INTO `clientes`(`nombre_cliente`, `documento_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `codigo`, `saldo_cliente`, `empresa_cliente`, `fec_consumo`, `menu_cliente`,`id_carga`) 
-                VALUES ('$nombre_cliente','$documento_cliente','','','','','$date_added','','0','','$fec_consumo','$turno','$codigo_log')";
+                $sql_update = "INSERT INTO `clientes`(`nombre_cliente`, `documento_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `codigo`, `saldo_cliente`, `empresa_cliente`, `fec_consumo`, `menu_cliente`,`id_carga`,`turno_desde`,`turno_hasta`) 
+                VALUES ('$nombre_cliente','$documento_cliente','','','$direccion_cliente','','$date_added','','0','$empresa_cliente','$fec_consumo','$menu_cliente','$codigo_log','$turno_desde','$turno_hasta')";
 
                 $query_new_insert = mysqli_query($con,$sql_update);
                 if ($query_new_insert){

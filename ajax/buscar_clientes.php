@@ -144,7 +144,7 @@
 
 		$sql="SELECT cli.*, 
 		(select MAX(co.estado) from consumos_diarios co where co.id_cliente = cli.id_cliente and co.estado = 1 ) as estado,
-		(select concat(t.inicio_turno,'-',t.fin_turno)  from turnos t where t.codigo_turno = cli.menu_cliente) as turno
+		concat(cli.turno_desde,'-',cli.turno_hasta) as turno
 	   FROM  $sTable $sWhere LIMIT $offset,$per_page";
 
 
@@ -170,6 +170,12 @@
 
 					<th>Cedula</th>
 
+					<th>Cargo</th>
+
+					<th>Ubicación</th>
+
+					<th>Alimentación</th>
+
 					<th>Turno</th>
 
 					<th>Fec. a Consumir</th>
@@ -191,6 +197,9 @@
 						$id_cliente=$row['id_cliente'];
 						$nombre_cliente=$row['nombre_cliente'];
 						$documento_cliente=$row['documento_cliente'];
+						$empresa_cliente=$row['empresa_cliente'];
+						$direccion_cliente=$row['direccion_cliente'];
+						$menu_cliente=$row['menu_cliente'];
 						$estado=$row['estado'];
 						$estado_ori=$row['estado'];
 						if ($estado==0){$estado="Sin Consumir";$label_class='label-success';}
@@ -207,6 +216,8 @@
 					<input type="hidden" value="<?php echo $id_cliente;?>" id="id_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $nombre_cliente;?>" id="nombre_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $documento_cliente;?>" id="documento_cliente<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $empresa_cliente;?>" id="empresa_cliente<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $direccion_cliente;?>" id="direccion_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $estado;?>" id="estado<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $menu_cliente;?>" id="menu_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $a_consumir;?>" id="a_consumir<?php echo $id_cliente;?>">
@@ -220,6 +231,9 @@
 						<td><?php echo $id_cliente; ?></td>
 						<td><?php echo $nombre_cliente; ?></td>
 						<td><?php echo $documento_cliente;?></td>
+						<td><?php echo $empresa_cliente;?></td>
+						<td><?php echo $direccion_cliente;?></td>
+						<td><?php echo $menu_cliente;?></td>
 						<td><?php echo $turno;?></td>
 						<td><?php echo $a_consumir;?></td>
 						<td><span class="label <?php echo $label_class;?>"><?php echo $estado; ?></span></td>
