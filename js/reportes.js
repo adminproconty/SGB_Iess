@@ -8,18 +8,25 @@ $(document).ready(function(){
 });
 
 function init() {
-    $( "#form_busq_cliente" ).hide( "slow" );
-    $( "#form_busq_producto" ).hide( "slow" );
+    //$( "#form_busq_cliente" ).hide();
+    //$( "#form_busq_producto" ).hide();
     $( "#form_busq_fechas" ).hide( "slow" );
 
 }
 
 //MUESTRO OCULTO OPCIONES
 function showGetCliente() {
-    $( "#form_busq_cliente" ).hide( "slow" );
-    $( "#form_busq_producto" ).hide( "slow" );
+    //$( "#form_busq_cliente" ).hide();
+    //$( "#form_busq_producto" ).hide();
     $( "#form_busq_fechas" ).show( "slow" );
 }
+
+function showGetClientefallido() {
+    //$( "#form_busq_cliente" ).hide();
+    //$( "#form_busq_producto" ).hide();
+    $( "#form_busq_fechas" ).show( "slow" );
+}
+
 
 function showGetProducto() {
     $( "#form_busq_cliente" ).hide( "slow" );
@@ -59,7 +66,9 @@ $( "#select_reporte" ).change(function() {
         } else if (opcion == "cierre") {
             localStorage.setItem('tipo_exportar', 'cierre');
             showGetCierre();
-
+        } else if (opcion == "cliente_fallido") {
+            localStorage.setItem('tipo_exportar', 'cliente_fallido');
+            showGetClientefallido();
         } else {
             //init();
             showGetDetalle();
@@ -84,9 +93,11 @@ $('#hasta').change(function(){
     } else if (valida_repo == 'producto'){
         getProductos(1);
     } else if (valida_repo == 'cierre'){
-        getCierre(0);    
+        getCierre(0);   
+    } else if (valida_repo == 'cliente_fallido'){
+        getClientesfallido(1);     
     } else {
-        getDetalle(1);
+        getClientesfallido(1);
     }
 });
 
@@ -169,6 +180,35 @@ function getClientes(tipo) {
     }
 
     url = './ajax/reporte_cliente.php?action=ajax&id_cliente='+id_cliente+'&inicio='+inicio+'&fin='+fin;
+    $("#loader").fadeIn('slow');
+    $.ajax({
+        url: url,
+        beforeSend: function(objeto){
+            $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
+        },
+        success:function(data){
+            $(".outer_div").html(data).fadeIn('slow');
+            $('#loader').html('');
+        }
+    })
+}
+
+function getClientesfallido(tipo) {
+    
+    localStorage.setItem('tipo_exportar', 'cliente_fallido');
+    var url = '';
+    var id_cliente= $("#id_cliente").val();
+    var inicio= $("#inicio").val();
+    var fin= $("#fin").val();
+    if(inicio == '') {
+        //inicio = new Date().toJSON().slice(0,10);
+        inicio = '2018-01-01';
+    }
+    if(fin == '') {
+        //fin = new Date().toJSON().slice(0,10);
+        fin = '3000-01-01';
+    }
+    url = './ajax/reporte_clientefallido.php?action=ajax&id_cliente='+id_cliente+'&inicio='+inicio+'&fin='+fin;
     $("#loader").fadeIn('slow');
     $.ajax({
         url: url,

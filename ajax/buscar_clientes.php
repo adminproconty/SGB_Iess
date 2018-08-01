@@ -205,7 +205,7 @@
 						if ($estado==0){$estado="Sin Consumir";$label_class='label-success';}
 						else {$estado="Consumido";$label_class='label-danger';}
 						$menu_cliente=trim($row['menu_cliente']);
-						$a_consumir=$row['fec_consumo'];
+						$a_consumir=trim($row['fec_consumo']);
 						$id_carga=$row['id_carga'];
 						$turno=$row['turno'];
 						$turno_desde=$row['turno_desde'];

@@ -35,7 +35,8 @@
                 $num_registros = $num_registros + 1;
                 $nombre_cliente = utf8_encode($datos[1]);
                 $menu_cliente = utf8_encode($datos[2]);
-                $fec_consumo = date('Y/m/d',strtotime(str_replace("/", "-", $datos[3])));
+                $fec_consumo = date("Y/m/d",strtotime(str_replace("/", "-", $datos[3])));
+                //$fec_consumo = utf8_encode($datos[3]);
                 $turno_desde = utf8_encode($datos[4]);
                 $turno_hasta = utf8_encode($datos[5]);
                 $empresa_cliente = utf8_encode($datos[6]);
