@@ -44,6 +44,15 @@
 			if ($id_cliente <= 0){
 				$errors []= "No existe un registro de hoy en este horario para el Id: $documento";   
 				$puedecomer = 0;  
+				$fecha_hoy=date('Y-m-d H:i:s');
+				$sql_usuario=mysqli_query($con,"select * from users where user_id = ".$_SESSION['user_id']." order by lastname");
+					while ($rw=mysqli_fetch_array($sql_usuario)){
+						$user_name=$rw["user_name"];
+					}
+				$sql_auditoria="INSERT INTO `consumos_fallidos`(`documento_fallido`, `fecha_fallido`, `user_fallido`) VALUES ($documento,'$fecha_hoy','$user_name')";
+				$query_auditoria = mysqli_query($con,$sql_auditoria);
+				
+								
 			} elseif ($registra_consumo > 0 ) {
 				$alerts []= "Ya existe un registro de hoy para el Id: $documento";
 				$puedecomer = 0;
@@ -61,7 +70,7 @@
 ?>
 					<script languaje="javascript">
 						var id_cliente = <?php echo $id_cliente; ?>;
-						window.open('./pdf/documentos/ver_factura.php?id_cliente='+id_cliente,'Factura','width=200,height=100');
+						//window.open('./pdf/documentos/ver_factura.php?id_cliente='+id_cliente,'Factura','width=200,height=100');
 					</script>
 <?php
 					$messages[] = "Consumo Registrado Exitosamente: $fecha_hoy";
