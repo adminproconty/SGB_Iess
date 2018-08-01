@@ -27,20 +27,40 @@
 				  <input type="text" class="form-control" id="mod_documento" name="mod_documento" required>
 				</div>
 			  </div>
-			  
+			  <div class="form-group">
+				<label for="mod_cargo" class="col-sm-3 control-label">Cargo</label>
+				<div class="col-sm-8">
+				  <input type="text" class="form-control" id="mod_cargo" name="mod_cargo" required>
+				</div>
+			  </div>
 
 				<div class="form-group">
-				<label for="mod_menu" class="col-sm-3 control-label">Horario</label>
-					<div class="col-sm-8">
-					<select class="form-control" id="mod_menu" name="mod_menu" required>
-						<option value="" selected>-- Selecciona opción --</option>
-						<option value='1'>1</option>
-						<option value='2'>2</option>
-						<option value='3'>3</option>
-						
-						</select>
-					</div>
-					</div>	
+				<label for="mod_ubicacion" class="col-sm-3 control-label">Ubicación</label>
+				<div class="col-sm-8">
+				  <input type="text" class="form-control" id="mod_ubicacion" name="mod_ubicacion" required>
+				</div>
+			  </div>
+
+				<div class="form-group">
+				<label for="mod_alimentacion" class="col-sm-3 control-label">Alimentación</label>
+				<div class="col-sm-8">
+				  <input type="text" class="form-control" id="mod_alimentacion" name="mod_alimentacion" required>
+				</div>
+			  </div>
+
+				<div class="form-group">
+				<label for="mod_desde" class="col-sm-3 control-label">Desde</label>
+				<div class="col-sm-8">
+				  <input type="time" class="form-control" id="mod_desde" name="mod_desde" required>
+				</div>
+			  </div>	
+
+				<div class="form-group">
+				<label for="mod_hasta" class="col-sm-3 control-label">Hasta</label>
+				<div class="col-sm-8">
+				  <input type="time" class="form-control" id="mod_hasta" name="mod_hasta" required>
+				</div>
+			  </div>
 
 				<div class="form-group">
 				<label for="mod_fecha" class="col-sm-3 control-label">Fecha a Consumir</label>

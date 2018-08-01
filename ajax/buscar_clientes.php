@@ -208,6 +208,8 @@
 						$a_consumir=$row['fec_consumo'];
 						$id_carga=$row['id_carga'];
 						$turno=$row['turno'];
+						$turno_desde=$row['turno_desde'];
+						$turno_hasta=$row['turno_hasta'];
 						
 					?>
 
@@ -221,6 +223,8 @@
 					<input type="hidden" value="<?php echo $estado;?>" id="estado<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $menu_cliente;?>" id="menu_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $a_consumir;?>" id="a_consumir<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $turno_desde;?>" id="turno_desde<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $turno_hasta;?>" id="turno_hasta<?php echo $id_cliente;?>">
 
 					
 

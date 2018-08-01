@@ -88,16 +88,28 @@ $( "#editar_cliente" ).submit(function( event ) {
 		$("#resultados_ajax2").html(''); //blanqueo mensaje de modal de edit cliente
 		var nombre_cliente = $("#nombre_cliente"+id).val();
 		var documento_cliente = $("#documento_cliente"+id).val();
-		var estado = $("#estado"+id).val();
+		var empresa_cliente = $("#empresa_cliente"+id).val();
+		var direccion_cliente = $("#direccion_cliente"+id).val();
 		var menu_cliente = $("#menu_cliente"+id).val();
+		var menu_cliente = $("#menu_cliente"+id).val();
+		var turno_desde = $("#turno_desde"+id).val();
+		var turno_hasta = $("#turno_hasta"+id).val();
+
+		var estado = $("#estado"+id).val();
+		
 		var a_consumir = $("#a_consumir"+id).val();
 
-
-		$("#mod_nombre").val(nombre_cliente);
+		
 		$("#mod_id").val(id);
+		$("#mod_nombre").val(nombre_cliente);
 		$("#mod_documento").val(documento_cliente);
+		$("#mod_cargo").val(empresa_cliente);
+		$("#mod_ubicacion").val(direccion_cliente);
 		$("#mod_estado").val(estado);
-		$("#mod_menu").val(menu_cliente);
+		$("#mod_alimentacion").val(menu_cliente);
+		$("#mod_desde").val(turno_desde);
+		$("#mod_hasta").val(turno_hasta);
+
 		$("#mod_fecha").val(a_consumir);
 	}
 
