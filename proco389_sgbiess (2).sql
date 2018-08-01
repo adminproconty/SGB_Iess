@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-08-2018 a las 20:01:47
+-- Tiempo de generación: 01-08-2018 a las 21:29:33
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 7.0.21
 
@@ -1412,8 +1412,8 @@ INSERT INTO `clientes` (`id_cliente`, `nombre_cliente`, `documento_cliente`, `te
 (1332, 'YANBAY DAMIAN ALDO JAVIER', '925658163', '', '', 'HOSPITALIZACION QUIRURGICA \r\n', 0, '2018-08-01 12:48:29', '', '0.00', 'ENEFERMERO/A', '2018-07-26', 'DESAYUNO', 'C000001', '19:00:00', '07:00:00'),
 (1333, 'YANBAY DAMIAN ALDO JAVIER', '925658163', '', '', 'HOSPITALIZACION QUIRURGICA \r\n', 0, '2018-08-01 12:48:29', '', '0.00', 'ENEFERMERO/A', '2018-07-29', 'ALMUERZO ', 'C000001', '07:00:00', '19:00:00'),
 (1334, 'YANBAY DAMIAN ALDO JAVIER', '925658163', '', '', 'HOSPITALIZACION QUIRURGICA \r\n', 0, '2018-08-01 12:48:29', '', '0.00', 'ENEFERMERO/A', '2018-07-29', 'CENA ', 'C000001', '07:00:00', '19:00:00'),
-(1335, 'YANBAY DAMIAN ALDO JAVIER', '925658163', '', '', 'HOSPITALIZACION QUIRURGICA \r\n', 0, '2018-08-01 12:48:29', '', '0.00', 'ENEFERMERO/A', '2018-07-30', 'CENA ', 'C000001', '19:00:00', '07:00:00'),
-(1336, 'YANBAY DAMIAN ALDO JAVIER', '925658163', '', '', 'HOSPITALIZACION QUIRURGICA \r\n', 0, '2018-08-01 12:48:29', '', '0.00', 'ENEFERMERO/A', '2018-07-31', 'DESAYUNO', 'C000001', '19:00:00', '07:00:00');
+(1335, 'YANBAY DAMIAN ALDO JAVIER', '925658163', '', '', 'HOSPITALIZACION QUIRURGICA ', 0, '2018-08-01 12:48:29', '', '0.00', 'ENEFERMERO/A', '2018-07-30', 'ooooo', 'C000001', '19:00:00', '07:00:00'),
+(1336, 'YANBAY DAMIAN ALDO JAVIER', '925658163', '', '', '', 0, '2018-08-01 12:48:29', '', '0.00', 'ENEFERMERO/A', '2018-07-31', 'dsfsadf', 'C000001', '19:00:00', '07:00:00');
 
 -- --------------------------------------------------------
 
@@ -1469,6 +1469,27 @@ CREATE TABLE `consumos_diarios` (
 
 INSERT INTO `consumos_diarios` (`id_consumos`, `id_cliente`, `fecha_consumo`, `estado`, `fecha_cambio`, `user_cambio`) VALUES
 (1, 1155, '2018-07-23 19:10:02', '1', '0000-00-00 00:00:00', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `consumos_fallidos`
+--
+
+CREATE TABLE `consumos_fallidos` (
+  `id_fallidos` int(11) NOT NULL,
+  `documento_fallido` varchar(20) NOT NULL,
+  `fecha_fallido` datetime NOT NULL,
+  `user_fallido` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `consumos_fallidos`
+--
+
+INSERT INTO `consumos_fallidos` (`id_fallidos`, `documento_fallido`, `fecha_fallido`, `user_fallido`) VALUES
+(1, '65432', '0000-00-00 00:00:00', 'admin'),
+(2, '8098765444', '2018-08-01 14:09:21', 'admin');
 
 -- --------------------------------------------------------
 
@@ -1690,6 +1711,12 @@ ALTER TABLE `consumos_diarios`
   ADD PRIMARY KEY (`id_consumos`);
 
 --
+-- Indices de la tabla `consumos_fallidos`
+--
+ALTER TABLE `consumos_fallidos`
+  ADD PRIMARY KEY (`id_fallidos`);
+
+--
 -- Indices de la tabla `currencies`
 --
 ALTER TABLE `currencies`
@@ -1766,6 +1793,11 @@ ALTER TABLE `codigos_maestros`
 --
 ALTER TABLE `consumos_diarios`
   MODIFY `id_consumos` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `consumos_fallidos`
+--
+ALTER TABLE `consumos_fallidos`
+  MODIFY `id_fallidos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `currencies`
 --
